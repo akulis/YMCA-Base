@@ -8,7 +8,9 @@
     top: 50%;
     transform: translateY(-50%);*/
 }
-
+.text-white {
+    color: #ffffff;
+}
 /* Navbar Icon */
 .NavbarIconContainer {
     max-width: 100%;
@@ -40,6 +42,10 @@
 /* Fixes row issues with Product List page */
 .panel-product-list ul li h3 {
     font-size: 15px;
+}
+/* List Contact Us no bullets */
+.contactUsList h3 p ul li {
+    list-style-type: none;
 }
 
 /* This counters the spacing issue on the product list page with <a> links */
@@ -78,32 +84,50 @@
     font-size: 13pt;
     margin-top: 0px;
     clear: both;
-    background-color: #dedede;
+    background-color: #f47920;
     height: 150px;
     width: 100%;
     bottom: 0;
-    padding: 30px 0px;
+    padding: 25px 0px;
+}
+.TopFooter a {
+    color: #ffffff;
+}
+.TopFooter p {
+    color: #ffffff;
 }
 .TopxsFooter {
     margin-top: 0px;
     clear: both;
-    background-color: #dedede;
+    background-color: #f47920;
     height: 150px;
     bottom: 0;
-    padding: 45px 0px;
+    padding: 25px 0px;
+}
+.TopxsFooter a {
+    color: #ffffff;
+}
+.TopxsFooter p {
+    color: #ffffff;
 }
 .TopxxsFooter {
     margin-top: 0px;
     clear: both;
-    background-color: #dedede;
+    background-color: #f47920;
     height: 150px;
     bottom: 0;
-    padding: 55px 0px;
+    padding: 25px 0px;
+}
+.TopxxsFooter a {
+    color: #ffffff;
+}
+.TopxxsFooter p {
+    color: #ffffff;
 }
 .footLeft {
     margin-right: 0px;
     margin-left: 0px;
-    margin-top: 0px;
+    margin-top: 12px;
     margin-bottom: 0px;
     padding-top: 0em;
     padding-right: 3px;
@@ -114,7 +138,7 @@
 .xsFootLeft {
     margin-right: 0px;
     margin-left: 0px;
-    margin-top: 0px;
+    margin-top: 20px;
     margin-bottom: 0px;
     padding-top: 0em;
     padding-right: 3px;
@@ -127,7 +151,7 @@
 .xxsFootLeft {
     margin-right: 0px;
     margin-left: 0px;
-    margin-top: 0px;
+    margin-top:25px;
     margin-bottom: 0px;
     padding-top: 0em;
     padding-right: 3px;
@@ -142,7 +166,7 @@
     margin-left: 0em;
     margin-top: 0px;
     margin-bottom: 0px;
-    padding-right: 25px;
+    padding: 3px 25px 0px 0px;
     float: right;
 }
 .xsFootRight {
@@ -150,7 +174,7 @@
     margin-left: 0em;
     margin-top: 0px;
     margin-bottom: 0px;
-    padding-right: 10px;
+    padding: 50px 10px 0px 0px;
     float: right;
     font-size: 2vw;
 }
@@ -159,14 +183,14 @@
     margin-left: 0em;
     margin-top: 0px;
     margin-bottom: 0px;
-    padding-right: 10px;
+    padding: 20px 10px 0px 0px;
     float: right;
     font-size: 1.8vw;
 }
 .socialFooter {
     margin-top: 0px;
     clear: both;
-    background-color: #000000;
+    background-color: #dd5828;
     height: 60px;
     width: 100%;
     bottom: 0;
@@ -203,28 +227,28 @@
 
 /* Theme CSS Edits */
 .container .navbar-nav li.active a:hover {
-  background-color: #DC291E; /*#A8AB00*/
+  background-color: #01a490; /*#A8AB00*/
 }
 .container .navbar-nav li.active a:focus {
-  background-color: #DC291E; /*#A8AB00*/;
+  background-color: #01a490; /*#A8AB00*/;
 }
 .navbar-default .navbar-nav .open > a {
-  background-color: #DC291E; /*#A8AB00*/
+  background-color: #01a490; /*#A8AB00*/
 }
 .navbar-default .navbar-nav .open > a:hover {
-  background-color: #DC291E; /*#A8AB00*/
+  background-color: #01a490; /*#A8AB00*/
 }
 .navbar-default .navbar-nav .open > a:focus {
-  background-color: #DC291E; /*#A8AB00*/
+  background-color: #01a490; /*#A8AB00*/
 }
 .navbar-nav li.dropdown li > a:hover {
-  background-color: #DC291E; /*#A8AB00*/
+  background-color: #01a490; /*#A8AB00*/
 }
 .navbar-nav li.dropdown li > a:focus {
-  background-color: #DC291E; /*#A8AB00*/
+  background-color: #01a490; /*#A8AB00*/
 }
 .navbar .container .navbar-nav li.active .fa-caret-down {
-  color: #DC291E; /*#A8AB00*/
+  color: #01a490; /*#A8AB00*/
 }
 .navbar-nav li.dropdown li > a {
   color: #333333;
@@ -243,13 +267,13 @@
   color: #FFFFFF;
 }
 .navbar-default {
-  background-color: #000000; /*0B3648*/
+  background-color: #006b6b; /*0B3648*/
 }
 .container .navbar-nav li a {
   color: #FFFFFF;
 }
 .container .navbar-nav li.active > a {
-  background-color: #DC291E; /*#A8AB00*/
+  background-color: #01a490; /*#A8AB00*/
 }
 .container .navbar-nav li.active > a {
   color: undefined;
@@ -270,7 +294,7 @@ body {
   color: #31708F;
 }
 body a {
-  color: #E04F4F;
+  color: #ed1c24;
 }
 .btn-primary {
   background-color: #0B3648;
@@ -309,16 +333,16 @@ body a {
   background-color: #39B3D7;
 }
 .btn-success {
-  background-color: #5CB85C;
+  background-color: #636466;
 }
 .btn-success, .btn-success:hover {
   color: #FFFFFF;
 }
 .btn-success {
-  border-color: #4CAE4C;
+  border-color: #636466;
 }
 .btn-success:hover {
-  background-color: #00AB41;
+  background-color: #0060af;
 }
 .btn-warning {
   background-color: #f0ad4e;
@@ -345,25 +369,37 @@ body a {
   background-color: #D2322D;
 }
 .jumbotron {
-  background-color: #FFFFFF;
+    border-radius: 25px; /* add for rounded borders $ak */
+    margin: 45px 10px -45px;
+    display: none;
+    background-color: #fcaf17;
 }
 h2 .jumbotron {
   color: #FFFFFF;
 }
+.panel-default {}
+
 .panel-primary .panel-heading .panel-title {
-  background-color: #F18F01; /*002A45*/
+    background-color: #a92b31; /*002A45*/
 }
 .panel-primary .panel-heading .panel-title {
-  color: #FFFFFF;
+    color: #FFFFFF;
 }
 .panel-default .panel-heading .panel-title {
-  background-color: #F5F5F5;
+    background-color: #cdcdcd;
 }
 .panel-default .panel-heading .panel-title {
-  color: #333333;
+    color: #333333;
+}
+.panel-heading {
+    border-radius: 25px 25px 0px 0px; /* add for rounded borders $ak */
+}
+.panel-title {
+    border-radius: 25px 25px 0px 0px; /* add for rounded borders $ak */
 }
 .panel {
-  background-color: #FFFFFF;
+    border-radius: 25px; /* add for rounded borders $ak */
+    background-color: #FFFFFF;
 }
 .panel-footer {
   background-color: #F5F5F5;
@@ -377,12 +413,23 @@ h2 .jumbotron {
 .panel-category-list .well {
   border-color: #F7F7F7;
 }
-.panel-product-list .well {
-  background-color: #FFFFFF;
+
+/* Adjust product list border/backgrounds $ak */
+.panel-product-list {
+    border-radius: 0px;
+    border-color: transparent;
 }
 .panel-product-list .well {
+  background-color: transparent;
+}
+.panel-product-list .aLinkSpacingFix {
   color: #333333;
 }
 .panel-product-list .well {
-  border-color: #F7F7F7;
+  border-color: transparent;
+}/*Changes size of images on category page*/
+.thumbnail img {
+  max-height: 100px; /*must match smallest size of thumbnail image*/
+  max-width: 100%;
+  margin: 0 auto 15px;
 }
