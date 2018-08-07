@@ -94,8 +94,26 @@
       </div>
     </aside>
     <div ng-class="{ 'col-md-9': navStatus.visible, 'col-md-12': !navStatus.visible }">
+      <!-- Above Category Message -->
+      <!-- <br>
+      <div class="categoryPanel text-center" ng-show="(currentCategory.Name === {{'Categories' | r | xlat}})">
+        <h2 class="colorBlack"><strong>Welcome to the Foremost Webstore!</strong></h2>
+        <h4>Your resource for high quality apparel</h4>
+      </div>
+      <br> -->
+      <!-- End Message -->
       <categorylistview></categorylistview>
       <loadingindicator ng-show="productLoadingIndicator" title="{{'Please wait while we fetch all products' | r | xlat}}" />
+      <!-- Below Category Message -->
+      <!-- <br>
+      <div class="categoryPanel" ng-show="(currentCategory.Name === {{'Categories' | r | xlat}})">
+        <ul>
+          <li>Orders will be accepted until XXX and product will ship by XXX.</li>
+          <li>Each item is custom made just for you, we appreciate your understanding that returns are not accepted except in the case of defective product.</li>
+        </ul>
+      </div>
+      <br> -->
+      <!-- End Message -->
       <productlistview></productlistview>
     </div>
   </div>
