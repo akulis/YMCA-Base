@@ -73,9 +73,9 @@ function productmatrix() {
   }
 }
 
-ProductMatrixCtrl.$inject = ['$scope', '$routeParams', '$location', 'ProductDisplayService', 'Order', 'User', 'ProductMatrix'];
+ProductMatrixCtrl.$inject = ['$scope', '$routeParams', '$location', 'ProductDisplayService', 'Order', 'User', 'ProductMatrix', 'CustomErrors'];
 
-function ProductMatrixCtrl($scope, $routeParams, $location, ProductDisplayService, Order, User, ProductMatrix) {
+function ProductMatrixCtrl($scope, $routeParams, $location, ProductDisplayService, Order, User, ProductMatrix, CustomErrors) {
 
   $scope.addToOrderText = "Add To Cart";
   $scope.currentOrder = $scope.$parent.$parent.currentOrder;
@@ -135,6 +135,42 @@ function ProductMatrixCtrl($scope, $routeParams, $location, ProductDisplayServic
     );
   }
 
+  var _addVariantsToOrder = function() {
+    if (!$scope.currentOrder) {
+      $scope.currentOrder = {};
+      $scope.currentOrder.LineItems = [];
+    }
+
+    if (!$scope.lineItemIndex) {
+      ProductMatrix.addToOrder($scope.comboVariants, $scope.product, function(lineItems) {
+        $scope.addToOrderIndicator = true;
+        angular.forEach(lineItems, function(li) {
+          $scope.currentOrder.LineItems.push(li);
+        });
+        saveOrder($scope.currentOrder);
+      });
+    } else {
+      $scope.addToOrderIndicator = true;
+      if ($scope.specCount == 1) {
+        angular.forEach($scope.comboVariants, function(variant) {
+          if (variant[0].Quantity) {
+            $scope.currentOrder.LineItems[$scope.lineItemIndex].Quantity = variant[0].Quantity;
+          }
+        });
+        saveOrder($scope.currentOrder);
+      } else {
+        angular.forEach($scope.comboVariants, function(group) {
+          angular.forEach(group, function(variant) {
+            if (variant.Quantity) {
+              $scope.currentOrder.LineItems[$scope.lineItemIndex].Quantity = variant.Quantity;
+            }
+          });
+        });
+        saveOrder($scope.currentOrder);
+      }
+    }
+  };
+
   $scope.addVariantsToOrder = function() {
 
     $scope.qtyError = "";
@@ -145,39 +181,58 @@ function ProductMatrixCtrl($scope, $routeParams, $location, ProductDisplayServic
     if ($scope.qtyError) {
       //do nothing - error messaging is shown via validateQuantity
     } else {
+      var cppMessage = CustomErrors.cppMessage;
+      var hkdMessage = CustomErrors.hkdMessage;
+      var normalCPPMessage = CustomErrors.normalCPPMessage;
+      var normalHKDMessage = CustomErrors.normalHKDMessage;
 
-      if (!$scope.currentOrder) {
-        $scope.currentOrder = {};
-        $scope.currentOrder.LineItems = [];
-      }
-
-      if (!$scope.lineItemIndex) {
-        ProductMatrix.addToOrder($scope.comboVariants, $scope.product, function(lineItems) {
-          $scope.addToOrderIndicator = true;
-          angular.forEach(lineItems, function(li) {
-            $scope.currentOrder.LineItems.push(li);
-          });
-          saveOrder($scope.currentOrder);
+      if ($scope.currentOrder) {
+        var groupFound = "";
+        var thisGroup = "";
+        angular.forEach($scope.currentOrder.LineItems, function(line) {
+          if (line.Product.StaticSpecGroups && line.Product.StaticSpecGroups.ProductGroup) {
+            groupFound = line.Product.StaticSpecGroups.ProductGroup.Specs.Group.Value.toUpperCase();
+          }
         });
-      } else {
-        $scope.addToOrderIndicator = true;
-        if ($scope.specCount == 1) {
-          angular.forEach($scope.comboVariants, function(variant) {
-            if (variant[0].Quantity) {
-              $scope.currentOrder.LineItems[$scope.lineItemIndex].Quantity = variant[0].Quantity;
-            }
-          });
-          saveOrder($scope.currentOrder);
-        } else {
-          angular.forEach($scope.comboVariants, function(group) {
-            angular.forEach(group, function(variant) {
-              if (variant.Quantity) {
-                $scope.currentOrder.LineItems[$scope.lineItemIndex].Quantity = variant.Quantity;
+        if ($scope.product.StaticSpecGroups && $scope.product.StaticSpecGroups.ProductGroup) {
+          //Attempting to add a grouped item to an existing order
+          thisGroup = $scope.product.StaticSpecGroups.ProductGroup.Specs.Group.Value.toUpperCase();
+          if (groupFound !== "") {
+            //Attempting to add a grouped item to an order containing a grouped item.
+            if (groupFound === thisGroup) {
+              //Groups match.  Add to order.
+              _addVariantsToOrder();
+            } else {
+              if (thisGroup === "HKD") {
+                alert(hkdMessage);
+              } else {
+                alert(cppMessage);
               }
-            });
-          });
-          saveOrder($scope.currentOrder);
+            }
+          } else {
+            //Attempting to add a grouped item to a normal order.
+            if (thisGroup === "HKD") {
+              alert(hkdMessage);
+            } else {
+              alert(cppMessage);
+            }
+          }
+        } else {
+          if (groupFound !== "") {
+            //Attempting to add a normal item to an order containing a grouped item.
+            if (groupFound === "HKD") {
+              alert(normalHKDMessage);
+            } else {
+              alert(normalCPPMessage);
+            }
+          } else {
+            //Attempting to add a normal item to a normal order.
+            _addVariantsToOrder();
+          }
         }
+      } else {
+        //Adding first item to an order, no validation needed.
+        _addVariantsToOrder();
       }
     }
   };
