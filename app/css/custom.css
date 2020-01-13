@@ -15,6 +15,12 @@
   max-height: 30px;
 }
 
+/* Footer Logo */
+.footerLogo {
+  max-width: 100%;
+  max-height: 75px;
+}
+
 .text-white {
   color: #ffffff;
 }
